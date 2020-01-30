@@ -7,9 +7,6 @@ import {
   Text,
   FlatList
 } from "react-native";
-import { createAppContainer, createBottomTabNavigator } from "react-navigation";
-import HomeScreen from "./MobileCourse2019/HomeScreen";
-import SettingScreen from "./MobileCourse2019/SettingScreen";
 
 export default function App() {
   return (
