@@ -7,10 +7,11 @@ import {
   Text,
   FlatList
 } from "react-native";
+import AwesomeButton from "react-native-really-awesome-button";
 
 export default function App() {
-  const [number1, setNumber1] = useState(0);
-  const [number2, setNumber2] = useState(0);
+  const [number1, setNumber1] = useState("");
+  const [number2, setNumber2] = useState("");
   const [total, setTotal] = useState(0);
 
   const buttonPlus = () => {
@@ -29,19 +30,35 @@ export default function App() {
         <TextInput
           style={styles.textBox}
           onChangeText={input => setNumber1(parseInt(input))}
-          value={number1}
+          value={String(number1)}
           keyboardType="numeric"
         />
         <TextInput
           style={styles.textBox}
           onChangeText={input => setNumber2(parseInt(input))}
-          value={number2}
+          value={String(number2)}
           keyboardType="numeric"
         />
       </View>
       <View style={styles.buttonContainer}>
-        <Button style={styles.button} title=" + " onPress={buttonPlus} />
-        <Button style={styles.button} title=" - " onPress={buttonMinus} />
+        <AwesomeButton
+          backgroundColor="pink"
+          backgroundDarker="#e6acd2"
+          width={100}
+          textSize={60}
+          onPress={buttonPlus}
+        >
+          +
+        </AwesomeButton>
+        <AwesomeButton
+          backgroundColor="pink"
+          backgroundDarker="#e6acd2"
+          width={100}
+          textSize={60}
+          onPress={buttonMinus}
+        >
+          -
+        </AwesomeButton>
       </View>
     </View>
   );
@@ -51,13 +68,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "#fff",
+    backgroundColor: "#B8E2F2",
     alignItems: "center"
   },
   textBox: {
     width: 200,
-    borderBottomColor: "blue",
-    borderWidth: 1
+    borderBottomColor: "#77C3EC",
+    borderWidth: 1,
+    backgroundColor: "white",
+    margin: 4
   },
   buttonContainer: {
     flexDirection: "row",
@@ -71,6 +90,6 @@ const styles = StyleSheet.create({
     fontSize: 30
   },
   button: {
-    flex: 1
+    padding: 80
   }
 });
