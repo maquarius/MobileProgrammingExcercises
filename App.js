@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   TextInput,
@@ -10,33 +10,43 @@ import {
 import AwesomeButton from "react-native-really-awesome-button";
 
 export default function App() {
-  const [number1, setNumber1] = useState("");
-  const [number2, setNumber2] = useState("");
-  const [total, setTotal] = useState(0);
+  const [number, setNumber] = useState(0);
+  const [guess, setGuess] = useState(0);
+  const [result, setResult] = useState("Guess a number between 1-100");
+  const [tries, setTries] = useState(0);
 
-  const buttonPlus = () => {
-    setTotal(number1 + number2);
+  const buttonGuess = () => {
+    if (number === guess) {
+      setResult("You guessed the number in" + { tries } + "guesses");
+      alert(result);
+    } else if (guess > 100 || guess < 1) {
+      setResult(
+        "Your guess is not a valid guess. Please guess a number between 1-100"
+      );
+    } else if (number < guess) {
+      setResult("Your guess of " + { guess } + " is too high");
+      setTries(tries + 1);
+    } else if (number > guess) {
+      setResult("Your guess of " + { guess } + " is too low");
+      setTries(tries + 1);
+    }
   };
 
-  const buttonMinus = () => {
-    setTotal(number1 - number2);
-  };
+  React.useEffect(() => {
+    setNumber(51);
+    alert(number);
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.result}>
-        <Text style={styles.resultText}>Result: {total}</Text>
+        <Text style={styles.resultText}>{result}</Text>
       </View>
       <View style={{ flex: 1 }}>
         <TextInput
           style={styles.textBox}
-          onChangeText={input => setNumber1(parseInt(input))}
-          value={String(number1)}
-          keyboardType="numeric"
-        />
-        <TextInput
-          style={styles.textBox}
-          onChangeText={input => setNumber2(parseInt(input))}
-          value={String(number2)}
+          onChangeText={input => setGuess(parseInt(input))}
+          value={guess}
           keyboardType="numeric"
         />
       </View>
@@ -44,20 +54,10 @@ export default function App() {
         <AwesomeButton
           backgroundColor="pink"
           backgroundDarker="#e6acd2"
-          width={100}
-          textSize={60}
-          onPress={buttonPlus}
+          textSize={40}
+          onPress={buttonGuess}
         >
-          +
-        </AwesomeButton>
-        <AwesomeButton
-          backgroundColor="pink"
-          backgroundDarker="#e6acd2"
-          width={100}
-          textSize={60}
-          onPress={buttonMinus}
-        >
-          -
+          MAKE GUESS
         </AwesomeButton>
       </View>
     </View>
