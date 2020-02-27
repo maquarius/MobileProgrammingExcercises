@@ -9,12 +9,13 @@ import {
 } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import settingsScreen from "./components2020/settingsScreen";
-import HomeScreen from "./components2020/homescreen";
+import CalculatorScreen from "./components2020/calculatorScreen";
+import HistoryScreen from "./components2020/historyScreen";
+import CalculatorScreen from "./components2020/calculatorScreen";
 
 const AppNavigator = createStackNavigator({
-  Home: { screen: HomeScreen },
-  Settings: { screen: settingsScreen }
+  Calculator: { screen: CalculatorScreen },
+  History: { screen: HistoryScreen }
 });
 
 const AppContainer = createAppContainer(AppNavigator);
