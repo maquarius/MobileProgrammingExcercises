@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   TextInput,
   FlatList,
   Image,
   Text,
+  Button,
   View
 } from "react-native-gesture-handler";
 
-function excercise7RecipeFinder() {
+const Excercise7RecipeFinder = () => {
   const [keyword, setKeyword] = useState("");
   const [results, setResults] = useState([]);
 
@@ -42,9 +43,9 @@ function excercise7RecipeFinder() {
         placeholder="Keyword"
         onChangeText={keyword => setKeyword(keyword)}
       />
-      <Button title="get recipes!" onPress={fetchResults} />
+      <Button title="get recipes!" onPress={fetchResults()} />
     </View>
   );
-}
+};
 
-export default excercise7RecipeFinder;
+export default Excercise7RecipeFinder;
