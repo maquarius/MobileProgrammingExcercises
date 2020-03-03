@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Flatlist } from "react-native";
-function historyScreen() {
+export default function historyScreen() {
   const { params } = props.navigation.state;
 
   return (
@@ -13,4 +13,3 @@ function historyScreen() {
   );
 }
 
-export default historyScreen;

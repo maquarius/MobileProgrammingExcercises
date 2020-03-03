@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, version} from "react";
 import {
   View,
   Text,
@@ -8,9 +8,9 @@ import {
   Stylesheet
 } from "react-native";
 
-export default function calculatorScreen() {
-  const [number1, setNumber1] = useState(0);
-  const [number2, setNumber2] = useState(0);
+export default function calculatorScreen(props) {
+  const [number1, setNumber1] = useState("");
+  const [number2, setNumber2] = useState("");
   const [total, setTotal] = useState(0);
   const [history, setHistory] = useState([]);
 
@@ -46,6 +46,11 @@ export default function calculatorScreen() {
         value={number2}
         keyboardType="numeric"
       />
+      <View>
+        <Button onPress={() => buttonPlus()} title="+"></Button>
+        <Button onPress={() => buttonMinus()} title="-"></Button>
+      
+      </View>
       <Button
         onPress={() => navigate("history", { history: history })}
         title="History"
@@ -54,4 +59,3 @@ export default function calculatorScreen() {
   );
 }
 
-export default calculatorScreen;

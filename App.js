@@ -11,7 +11,6 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import CalculatorScreen from "./components2020/calculatorScreen";
 import HistoryScreen from "./components2020/historyScreen";
-import CalculatorScreen from "./components2020/calculatorScreen";
 
 const AppNavigator = createStackNavigator({
   Calculator: { screen: CalculatorScreen },
