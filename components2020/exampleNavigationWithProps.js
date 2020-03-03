@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
-
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  Button,
+  Text,
+  FlatList
+} from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import CalculatorScreen from "./components2020/calculatorScreen.js";
-import HistoryScreen from "./components2020/historyScreen.js";
+import settingsScreen from "./components2020/settingsScreen";
+import HomeScreen from "./components2020/homescreen";
 
 const AppNavigator = createStackNavigator({
-  Calculator: { screen: CalculatorScreen },
-  History: { screen: HistoryScreen }
+  Home: { screen: HomeScreen },
+  Settings: { screen: settingsScreen }
 });
 
 const AppContainer = createAppContainer(AppNavigator);
