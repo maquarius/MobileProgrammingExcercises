@@ -27,14 +27,16 @@ export default function CalculatorScreen(props) {
 
   const { navigate } = props.navigation;
   return (
-    <View>
-      <View>{total}</View>
+    <View style={styles.container}>
+      <Text style={styles.resultText}>{total}</Text>
       <TextInput
+        style={styles.textBox}
         onChangeText={input => setNumber1(parseInt(input))}
         value={number1}
         keyboardType="numeric"
       />
       <TextInput
+        style={styles.textBox}
         onChangeText={input => setNumber2(parseInt(input))}
         value={number2}
         keyboardType="numeric"
