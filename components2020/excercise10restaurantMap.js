@@ -11,7 +11,7 @@ export default function Excercise10restaurantMap() {
   const [restaurants, setRestaurants] = useState([]);
 
   // url for testing:
-  // http://www.mapquestapi.com/geocoding/v1/address?key=&location=Helsinki
+  // http://www.mapquestapi.com/geocoding/v1/address?key="&location=Helsinki
 
   const findLocation = () => {
     const myKey = "";
