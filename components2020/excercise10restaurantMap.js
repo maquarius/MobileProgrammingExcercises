@@ -11,10 +11,10 @@ export default function Excercise10restaurantMap() {
   const [restaurants, setRestaurants] = useState([]);
 
   // url for testing:
-  // http://www.mapquestapi.com/geocoding/v1/address?key=Blq2I4UGMSQ33wdbDcsyXRHtHSLj0TMJ&location=Helsinki
+  // http://www.mapquestapi.com/geocoding/v1/address?key=&location=Helsinki
 
   const findLocation = () => {
-    const myKey = "Blq2I4UGMSQ33wdbDcsyXRHtHSLj0TMJ";
+    const myKey = "";
     const url =
       "http://www.mapquestapi.com/geocoding/v1/address?key=" +
       myKey +
@@ -36,9 +36,9 @@ export default function Excercise10restaurantMap() {
 
   const findRestaurants = () => {
     //TEsting url
-    // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=60.197873,24.932265&radius=500&types=restaurant&key=AIzaSyBrVYxLW3IiZHeWgjbL1GBqajup50IS6G8
+    // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=60.197873,24.932265&radius=500&types=restaurant&key=
     const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.latitude},${location.longitude}&radius=500&types=restaurant&key=${key}`;
-    const key = "AIzaSyBrVYxLW3IiZHeWgjbL1GBqajup50IS6G8";
+    const key = "";
     fetch(url)
       .then(response => response.json())
       .then(data => {
