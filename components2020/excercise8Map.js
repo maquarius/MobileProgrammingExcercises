@@ -7,24 +7,26 @@ export default function Excercise8Map() {
     latitude: 60.200692,
     longitude: 24.934302
   });
-  const [adress, setAdress] = useState("Haaga-Helia");
+  const [adress, setAdress] = useState("Helsinki");
 
-  const url =
-    "http://www.mapquestapi.com/geocoding/v1/address?key=" +
-    myKey +
-    "&location=" +
-    adress;
-  const myKey = "Blq2I4UGMSQ33wdbDcsyXRHtHSLj0TMJ";
+  // url for testing:
+  // http://www.mapquestapi.com/geocoding/v1/address?key=Blq2I4UGMSQ33wdbDcsyXRHtHSLj0TMJ&location=Helsinki
 
   const findLocation = () => {
+    const url =
+      "http://www.mapquestapi.com/geocoding/v1/address?key=" +
+      myKey +
+      "&location=" +
+      adress;
+    const myKey = "Blq2I4UGMSQ33wdbDcsyXRHtHSLj0TMJ";
+
     fetch(url)
-      .then(response => response.json())
       .then(data => {
-        setLocation(
-          (location.latitude = data.results[0].locations[0].latLng.lat),
-          (location.longitude = data.results[0].locations[0].latLng.lng)
-        );
-      });
+        let latitudeData = data.results[0].locations[0].latLng.lat;
+        let longitudeData = data.results[0].locations[0].latLng.lng;
+        setLocation({ latitude: latitudeData }, { longitude: longitudeData });
+      })
+      .catch(error => Alert.alert(error.message));
   };
   return (
     <View style={{ flex: 1 }}>

@@ -1,32 +1,32 @@
 import React, { useState } from "react";
-import {
-  TextInput,
-  FlatList,
-  Image,
-  Text,
-  Button,
-  View
-} from "react-native-gesture-handler";
+import { TextInput, FlatList, Image, Text, Button, View } from "react-native";
 
-const Excercise7RecipeFinder = () => {
+export default function Excercise7RecipeFinder() {
   const [keyword, setKeyword] = useState("");
   const [results, setResults] = useState([]);
 
   const fetchResults = () => {
     let url = "http://www.recipepuppy.com/api/?i=" + keyword;
-
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        setResults(data);
+        setResults(data.results);
       })
       .catch(error => {
         Alert.alert("Error", error);
       });
   };
   return (
-    <View>
+    <View
+      style={{
+        flex: 1,
+        display: "flex",
+        alignItems: "center",
+        justifiContent: "space-between"
+      }}
+    >
       <FlatList
+        keyExtractor={(item, index) => index.toString()}
         data={results}
         renderItem={({ item }) => (
           <View>
@@ -43,9 +43,7 @@ const Excercise7RecipeFinder = () => {
         placeholder="Keyword"
         onChangeText={keyword => setKeyword(keyword)}
       />
-      <Button title="get recipes!" onPress={fetchResults()} />
+      <Button title="get recipes!" onPress={() => fetchResults()} />
     </View>
   );
-};
-
-export default Excercise7RecipeFinder;
+}
