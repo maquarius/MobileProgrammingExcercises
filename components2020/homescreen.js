@@ -11,7 +11,7 @@ export default function HomeScreen(props) {
       <StatusBar hidden={true} />
       <Text> This is the homescreen </Text>
       <Button
-        onPress={() => navigate("Settings", { user: "Mike" })}
+        onress={() => navigate("Settings", { user: "Mike" })}
         title="Settings"
       />
     </View>

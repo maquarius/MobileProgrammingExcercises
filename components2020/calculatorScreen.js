@@ -31,13 +31,13 @@ export default function CalculatorScreen(props) {
       <Text style={styles.resultText}>{total}</Text>
       <TextInput
         style={styles.textBox}
-        onChangeText={input => setNumber1(parseInt(input))}
+        onChangeText={input => setNumber1(input)}
         value={number1}
         keyboardType="numeric"
       />
       <TextInput
         style={styles.textBox}
-        onChangeText={input => setNumber2(parseInt(input))}
+        onChangeText={input => setNumber2(input)}
         value={number2}
         keyboardType="numeric"
       />
@@ -46,7 +46,7 @@ export default function CalculatorScreen(props) {
         <Button onPress={() => buttonMinus()} title="-"></Button>
       </View>
       <Button
-        onPress={() => navigate("history", { history: history })}
+        onPress={() => navigate("History", { history: history })}
         title="History"
       />
     </View>
