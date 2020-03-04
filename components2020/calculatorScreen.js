@@ -53,10 +53,6 @@ export default function CalculatorScreen(props) {
   );
 }
 
-CalculatorScreen.navigationOptions = ({ navigate }) => ({
-  title: "Calculator"
-});
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

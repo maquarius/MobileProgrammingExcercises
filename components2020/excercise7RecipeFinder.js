@@ -13,8 +13,16 @@ export default function Excercise7RecipeFinder() {
         setResults(data.results);
       })
       .catch(error => {
-        Alert.alert("Error", error);
+        Alert.alert("Error", error.message);
       });
+  };
+
+  ItemSeparator = () => {
+    return (
+      <View
+        style={{ height: 0.5, width: "80%", backgroundColor: "black" }}
+      ></View>
+    );
   };
   return (
     <View
@@ -28,6 +36,7 @@ export default function Excercise7RecipeFinder() {
       <FlatList
         keyExtractor={(item, index) => index.toString()}
         data={results}
+        ItemSeparatorComponent={ItemSeparator}
         renderItem={({ item }) => (
           <View>
             <Text>{item.title}</Text>
