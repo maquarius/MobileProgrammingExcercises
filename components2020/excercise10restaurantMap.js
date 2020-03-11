@@ -14,7 +14,7 @@ export default function Excercise10restaurantMap() {
   // http://www.mapquestapi.com/geocoding/v1/address?key="&location=Helsinki
 
   const findLocation = () => {
-    const myKey = "";
+    const myKey = "Blq2I4UGMSQ33wdbDcsyXRHtHSLj0TMJ";
     const url =
       "http://www.mapquestapi.com/geocoding/v1/address?key=" +
       myKey +
@@ -30,7 +30,7 @@ export default function Excercise10restaurantMap() {
           longitude: longitudeData
         });
       })
-      .then(findRestaurants())
+      .then(data => findRestaurants())
       .catch(error => Alert.alert(error.message));
   };
 
@@ -38,13 +38,17 @@ export default function Excercise10restaurantMap() {
     //TEsting url
     // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=60.197873,24.932265&radius=500&types=restaurant&key=
     const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.latitude},${location.longitude}&radius=500&types=restaurant&key=${key}`;
-    const key = "";
+    const key = "AIzaSyBrVYxLW3IiZHeWgjbL1GBqajup50IS6G8";
     fetch(url)
       .then(response => response.json())
       .then(data => {
         setRestaurants(data.results);
-        Alert.alert(data.results[0]);
-      });
+      })
+      .catch(error => Alert.alert(error.message));
+  };
+
+  const alertRestaurant = () => {
+    Alert.alert(restaurants[0].name);
   };
 
   return (
@@ -55,6 +59,10 @@ export default function Excercise10restaurantMap() {
         onChangeText={input => setAdress(input)}
       ></TextInput>
       <Button title="Find location" onPress={() => findLocation()}></Button>
+      <Button
+        title="show first restaurant"
+        onPress={() => alertRestaurant()}
+      ></Button>
       {/* Needs region instead of initial region!! Region handles changable locations */}
       <MapView
         style={{ flex: 1 }}
@@ -72,7 +80,7 @@ export default function Excercise10restaurantMap() {
               longitude: item.geometry.location.lng
             }}
             title={item.name}
-            decription={item.vicinity}
+            description={item.vicinity}
           />
         ))}
       </MapView>
