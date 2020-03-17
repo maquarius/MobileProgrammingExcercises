@@ -7,5 +7,5 @@ import Excercise11PermissionMap from "./components2020/excercise11PermissionMap"
 import Excercise12shoppingDB from "./components2020/excercise12shoppingDB";
 
 export default function App() {
-  return <Excercise12shoppingDB />;
+  return <Excercise11PermissionMap />;
 }

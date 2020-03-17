@@ -6,7 +6,7 @@ import MapView, { Marker } from "react-native-maps";
 
 export default function Excercise11PermissionMap() {
   const [location, setLocation] = useState({
-    coords: { latitude: null, longitude: null }
+    coords: { latitude: 0, longitude: 0 }
   });
   const [adress, setAdress] = useState("Helsinki");
 
@@ -50,7 +50,6 @@ export default function Excercise11PermissionMap() {
       })
       .catch(error => Alert.alert(error.message));
   };
-
   return (
     <View style={{ flex: 1 }}>
       <StatusBar hidden={true} />
