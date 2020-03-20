@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { TextInput, View, Button, Alert, StatusBar } from "react-native";
+import {
+  TextInput,
+  View,
+  Text,
+  Button,
+  Alert,
+  StatusBar,
+  FlatList,
+  StyleSheet
+} from "react-native";
 import * as SQLite from "expo-sqlite";
 
-export const SqlExample = () => {
+export default function SqlExample() {
   const [credit, setCredit] = useState("");
-  const [titel, setTitle] = useState("");
-  const [courses, setCourse] = useState([]);
+  const [title, setTitle] = useState("");
+  const [courses, setCourses] = useState([]);
   const db = SQLite.openDatabase("coursedb.db");
 
   useEffect(() => {
@@ -20,7 +29,7 @@ export const SqlExample = () => {
     );
   }, []);
 
-  constsaveItem = () => {
+  const saveItem = () => {
     db.transaction(
       tx => {
         tx.executeSql("insert into course (credits,title) values (?,?);", [
@@ -33,7 +42,7 @@ export const SqlExample = () => {
     );
   };
 
-  constupdateList = () => {
+  const updateList = () => {
     db.transaction(tx => {
       tx.executeSql("select * from course;", [], (_, { rows }) =>
         setCourses(rows._array)
@@ -41,7 +50,7 @@ export const SqlExample = () => {
     });
   };
 
-  constdeleteItem = id => {
+  const deleteItem = id => {
     db.transaction(
       tx => {
         tx.executeSql(`delete from course where id = ?;`, [id]);
@@ -51,36 +60,68 @@ export const SqlExample = () => {
     );
   };
 
-  <FlatList
-    style={{ marginLeft: "5%" }}
-    keyExtractor={item => item.id.toString()}
-    renderItem={({ item }) => (
-      <View style={styles.listcontainer}>
-        <Text>
-          {item.title},{item.credits}{" "}
-        </Text>
-        <Text style={{ color: "#0000ff" }} onPress={() => deleteItem(item.id)}>
-          done
-        </Text>
-      </View>
-    )}
-    data={courses}
-  />;
-
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
         placeholder="Title"
+        style={{
+          marginTop: 30,
+          fontSize: 18,
+          width: 200,
+          borderColor: "gray",
+          borderWidth: 1
+        }}
         onChangeText={title => setTitle(title)}
         value={title}
-      />{" "}
+      />
       <TextInput
         placeholder="Credits"
         keyboardType="numeric"
+        style={{
+          marginTop: 5,
+          marginBottom: 5,
+          fontSize: 18,
+          width: 200,
+          borderColor: "gray",
+          borderWidth: 1
+        }}
         onChangeText={credit => setCredit(credit)}
         value={credit}
-      />{" "}
+      />
       <Button onPress={saveItem} title="Save" />
+      <Text style={{ marginTop: 30, fontSize: 20 }}>Courses</Text>
+      <FlatList
+        style={{ marginLeft: "5%" }}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({ item }) => (
+          <View style={styles.listcontainer}>
+            <Text style={{ fontSize: 18 }}>
+              {item.title}, {item.credits}
+            </Text>
+            <Text
+              style={{ fontSize: 18, color: "#0000ff" }}
+              onPress={() => deleteItem(item.id)}
+            >
+              {" "}
+              Done
+            </Text>
+          </View>
+        )}
+        data={courses}
+      />
     </View>
   );
-};
+}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  listcontainer: {
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    alignItems: "center"
+  }
+});
