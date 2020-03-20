@@ -11,7 +11,7 @@ import {
 import AwesomeButton from "react-native-really-awesome-button";
 import * as firebase from "firebase";
 
-export default function Excercise12shoppingDB() {
+export default function FirebaseShoppingDB() {
   const firebaseConfig = {
     apiKey: "AIzaSyDepgLg30prWDdm555lKVaj9JzSF39Plas",
     authDomain: "shoppinglist-70dfa.firebaseapp.com",

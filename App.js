@@ -4,8 +4,8 @@ import Excercise8CurrencyConverter from "./components2020/excercise8CurrencyConv
 import Excercise9Map from "./components2020/excercise9Map";
 import Excercise10restaurantMap from "./components2020/excercise10restaurantMap";
 import Excercise11PermissionMap from "./components2020/excercise11PermissionMap";
-import Excercise12shoppingDB from "./components2020/excercise12shoppingDB";
+import SqlExample from "./components2020/sqlExample";
 
 export default function App() {
-  return <Excercise11PermissionMap />;
+  return <SqlExample />;
 }
