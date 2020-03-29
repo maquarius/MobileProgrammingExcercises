@@ -15,6 +15,7 @@ export default function Excercise12ShoppingListSql() {
   const [product, setProduct] = useState("");
   const [ammount, setAmmount] = useState("");
   const [shopping, setShopping] = useState([]);
+
   const db = SQLite.openDatabase("shoppingdb.db");
 
   useEffect(() => {
@@ -24,21 +25,23 @@ export default function Excercise12ShoppingListSql() {
           "create table if not exists shopping (id integer primary key not null, product text, ammount text);"
         );
       },
-      null,
-      updateList
+      console.log(`Something went wrong with the creation of the database`),
+      updateList()
     );
   }, []);
 
   const saveItem = () => {
     db.transaction(
       tx => {
-        tx.executeSql("insert into course (product, ammount) values (?,?);", [
+        tx.executeSql("insert into shopping (product, ammount) values (?,?);", [
           product,
           ammount
         ]);
       },
-      null,
-      updateList
+      console.log(
+        `Something went wrond during the saving of ${product} and ${ammount}`
+      ),
+      updateList()
     );
   };
 
@@ -47,6 +50,9 @@ export default function Excercise12ShoppingListSql() {
       tx.executeSql("select * from shopping;", [], (_, { rows }) =>
         setShopping(rows._array)
       );
+      setAmmount("");
+      setProduct("");
+      console.log("update done");
     });
   };
 
@@ -55,8 +61,8 @@ export default function Excercise12ShoppingListSql() {
       tx => {
         tx.executeSql(`delete from shopping where id = ?;`, [id]);
       },
-      null,
-      updateList
+      console.log(`something went wrong when deleting item with id ` + id),
+      updateList()
     );
   };
 
@@ -71,7 +77,7 @@ export default function Excercise12ShoppingListSql() {
           borderColor: "gray",
           borderWidth: 1
         }}
-        onChangeText={product => setProduct(product)}
+        onChangeText={productInput => setProduct(productInput)}
         value={product}
       />
       <TextInput
@@ -84,7 +90,7 @@ export default function Excercise12ShoppingListSql() {
           borderColor: "gray",
           borderWidth: 1
         }}
-        onChangeText={ammount => setAmmount(ammount)}
+        onChangeText={ammountInput => setAmmount(ammountInput)}
         value={ammount}
       />
       <Button onPress={saveItem} title="Save" />
